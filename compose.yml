@@ -1,0 +1,22 @@
+services:
+  production:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      NODE_ENV: development
+      HOST: 0.0.0.0
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 5173:5173
