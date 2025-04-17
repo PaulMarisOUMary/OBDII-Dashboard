@@ -7,7 +7,7 @@ interface ModalProps {
     children: ReactNode;
 }
 
-export default function Modal({ isOpen, onClose, children }: ModalProps) {
+export function Modal({ isOpen, onClose, children }: ModalProps) {
     const overlayRef = useRef<HTMLDivElement>(null);
     const modalRef = useRef<HTMLDivElement>(null);
 
@@ -61,3 +61,5 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
         </AnimatePresence>
     );
 }
+
+export default Modal;

@@ -6,19 +6,22 @@ const DEFAULT_POLL_INTERVAL = 250;
 
 type DataContextType = {
     data: Record<string, any>;
+    bridge: Bridge;
+    setBridge: React.Dispatch<React.SetStateAction<Bridge>>;
     isConnected: boolean;
     error?: string;
 };
 
 type DataProviderProps = {
     bridge: Bridge;
+    setBridge: React.Dispatch<React.SetStateAction<Bridge>>;
     pollInterval?: number;
     children: React.ReactNode;
 };
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
-export const DataProvider = ({ bridge, pollInterval = DEFAULT_POLL_INTERVAL, children }: DataProviderProps) => {
+export const DataProvider = ({ bridge, setBridge, pollInterval = DEFAULT_POLL_INTERVAL, children }: DataProviderProps) => {
     const [data, setData] = useState<Record<string, any>>({});
     const [isConnected, setIsConnected] = useState<boolean>(false);
     const [error, setError] = useState<string | undefined>(undefined);
@@ -72,7 +75,7 @@ export const DataProvider = ({ bridge, pollInterval = DEFAULT_POLL_INTERVAL, chi
     }, [poll, pollInterval]);
 
     return (
-        <DataContext.Provider value={{ data, isConnected, error }}>
+        <DataContext.Provider value={{ data, bridge, setBridge, isConnected, error }}>
             {children}
         </DataContext.Provider>
     );

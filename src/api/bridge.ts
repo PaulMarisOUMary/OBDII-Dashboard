@@ -17,10 +17,12 @@ export default class Bridge extends BaseAPI {
     }
 
     async watchKey(key: string): Promise<void> {
-        await this.post('/watch', { key });
+        const url = `/add?key=${encodeURIComponent(key)}`;
+        await this.post(url);
     }
 
     async unwatchKey(key: string): Promise<void> {
-        await this.delete('/unwatch', { key });
+        const url = `/remove?key=${encodeURIComponent(key)}`;
+        await this.delete(url);
     }
 }
