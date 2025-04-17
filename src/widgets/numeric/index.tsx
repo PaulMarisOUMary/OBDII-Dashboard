@@ -20,4 +20,5 @@ export const NumericWidget = ({ config }: NumericWidgetProps) => {
     );
 };
 
+NumericWidget.displayName = 'NumericWidget';
 export default NumericWidget;

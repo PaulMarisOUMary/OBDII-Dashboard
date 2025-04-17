@@ -72,4 +72,5 @@ const GraphWidget = ({ config }: GraphWidgetProps) => {
     );
 };
 
+GraphWidget.displayName = 'GraphWidget';
 export default GraphWidget;

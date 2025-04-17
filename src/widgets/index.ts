@@ -5,14 +5,9 @@ interface WidgetEntry {
     Component: React.FC<any>;
 }
 
-export const loadedWidgets: WidgetEntry[] = Object.entries(widgets).map(([path, module]) => {
-    const name = path
-        .split('/')
-        .pop()
-        ?.replace(/\.(tsx|jsx)$/, '') || 'UnknownWidget';
+export const loadedWidgets: WidgetEntry[] = Object.entries(widgets).map(([_, module]) => {
+    const Component = (module as any).default;
+    const name = Component.displayName || Component.name || 'UnknownWidget';
 
-    return {
-        name,
-        Component: (module as any).default,
-    };
+    return { name, Component };
 });

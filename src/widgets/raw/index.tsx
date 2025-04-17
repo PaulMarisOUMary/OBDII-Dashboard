@@ -20,4 +20,5 @@ const RawDataWidget = () => {
     );
 };
 
+RawDataWidget.displayName = 'RawDataWidget';
 export default RawDataWidget;

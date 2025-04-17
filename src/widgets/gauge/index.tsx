@@ -41,4 +41,5 @@ export const GaugeWidget = ({ config }: GaugeWidgetProps) => {
     );
 };
 
+GaugeWidget.displayName = 'GaugeWidget';
 export default GaugeWidget;

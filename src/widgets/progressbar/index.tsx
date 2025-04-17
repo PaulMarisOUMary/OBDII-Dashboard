@@ -35,4 +35,5 @@ export const ProgressBarWidget = ({ config }: ProgressBarWidgetProps) => {
     );
 };
 
+ProgressBarWidget.displayName = 'ProgressBarWidget';
 export default ProgressBarWidget;
