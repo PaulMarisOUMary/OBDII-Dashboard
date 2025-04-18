@@ -31,6 +31,10 @@ export const DataProvider = ({ bridge, setBridge, pollInterval = DEFAULT_POLL_IN
     useEffect(() => {
         const checkConnection = async () => {
             try {
+                await bridge.disconnect();
+                await bridge.connect({
+                    port: "COM5"
+                } as Record<string, any>);
                 const status = await bridge.status();
                 setIsConnected(status);
                 setError(undefined);

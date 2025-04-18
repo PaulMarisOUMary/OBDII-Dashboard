@@ -12,6 +12,14 @@ export default class Bridge extends BaseAPI {
         }
     }
 
+    async connect(kwargs: Record<string, any>): Promise<void> {
+        await this.post('/connect', kwargs);
+    }
+
+    async disconnect(): Promise<void> {
+        await this.post('/disconnect');
+    }
+
     async getData(): Promise<APIData> {
         return this.get('/data');
     }
