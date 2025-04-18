@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+
+import { DataProvider } from './context/data';
+import Bridge from './api/bridge';
+
+import Modal from './components/modal';
+import Dashboard from './pages/dashboard';
+
+import gearIcon from './assets/svg/gear.svg';
+import Settings from './components/settings';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [bridge, setBridge] = useState(new Bridge('http://localhost:8000'));
+
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <DataProvider bridge={bridge} setBridge={setBridge}>
+      <button
+        onClick={() => setIsOpen(true)}
+        aria-label="Open Settings"
+        className="fixed bottom-4 right-4 z-50 rounded p-2 text-white hover:bg-black/30 focus:outline-none focus:ring-2 focus:ring-white transition"
+      >
+        <img src={gearIcon} alt="Settings" className="h-5 w-5 invert" />
+      </button>
+
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <Settings/>
+      </Modal>
+
+      <Dashboard/>
+    </DataProvider>
+  );
 }
 
 export default App
