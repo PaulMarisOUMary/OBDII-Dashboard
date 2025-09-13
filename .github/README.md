@@ -2,6 +2,14 @@
 
 A lightweight, modular, offline-first dashboard for automotive OBDII live data visualization.
 
+## Integration
+
+The dashboard isn’t responsible for fetching OBDII data. Instead, it connects to an external API that streams live data.
+
+- Recommended: [OBDII-API](https://github.com/PaulMarisOUMary/OBDII-API)
+
+- The dashboard runs well without an API, though no live data is shown.
+
 ## Docker Setup
 
 This project supports two Docker environments: **development** and **production**, managed with Docker Compose.
